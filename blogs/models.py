@@ -1,6 +1,6 @@
 from django.db import models
 
-class Blogs(models.Model):
+class BlogModel(models.Model):
   title = models.CharField(max_length=100)
   body = models.TextField()
   author = models.CharField(max_length=100)
