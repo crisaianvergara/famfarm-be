@@ -1,4 +1,4 @@
-from blogs.models import BlogModel
+from blogs.models import Blog
 from blogs.serializers import BlogSerializer
 from django.http import Http404
 from rest_framework.views import APIView
@@ -8,7 +8,7 @@ from rest_framework import status
 
 class BlogListView(APIView):
   def get(self, request, format=None):
-    blogs = BlogModel.objects.all()
+    blogs = Blog.objects.all()
     serializer = BlogSerializer(blogs, many=True)
     return Response(serializer.data)
   
@@ -23,8 +23,8 @@ class BlogListView(APIView):
 class BlogDetailView(APIView):
   def get_object(self, pk):
     try:
-      return BlogModel.objects.get(pk=pk)
-    except BlogModel.DoesNotExist:
+      return Blog.objects.get(pk=pk)
+    except Blog.DoesNotExist:
       raise Http404
     
   def get(self, request, pk, format=None):
